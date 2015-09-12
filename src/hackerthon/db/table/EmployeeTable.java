@@ -59,6 +59,44 @@ public class EmployeeTable {
         }
     }
 
+      public static EmployeeBean getRow(int eid) throws SQLException {
+            String sql = "SELECT * FROM employee WHERE eid=?";
+        ResultSet rs = null;
+        try(    Connection conn = DBUtil.getConnection(DBType.MYSQL);
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ){
+                    stmt.setInt(1, eid);
+//                    stmt.setString(2, password);
+                    rs = stmt.executeQuery();
+                    
+                    if(rs.next())
+                    {
+                      EmployeeBean bean = new EmployeeBean();
+                      bean.setId(eid);
+                      bean.setUsername(rs.getString("uname"));
+                      bean.setId(rs.getInt("eid"));
+                      bean.setPhone(rs.getString("phone"));
+                      bean.setBirthday(rs.getString("dob"));
+                      bean.setAddress(rs.getString("address"));
+                      bean.setName(rs.getString("ename"));
+                      bean.setRole(rs.getString("role"));
+                      
+                      return bean;
+                    }else{
+                    
+                    return null;
+                    }
+                } catch(SQLException e){
+                    System.err.println(e);
+                    return null;
+                } finally{
+            if(rs!=null){
+                rs.close();
+            }
+              
+        }
+    }
+
       public static boolean insert(EmployeeBean bean) throws Exception{
     
         String sql="INSERT INTO `employee`( `ename`, `phone`, `address`, `dob`, `uname`, `password`, `role`) "+
@@ -96,6 +134,52 @@ public class EmployeeTable {
         }
         return true;
     }
-      
+    
+      public static boolean update(EmployeeBean bean) throws Exception{
+    
+        String sql = "UPDATE employee SET "+
+                     "ename=?, "+
+                     "phone=?,"+
+                     "address=?, "+
+                     "dob=?, "+
+                     "uname=?, "+
+                     "password=?, "+
+                     "role=? "+
+//                     "currentStock=?, "+
+//                     "name=? "+
+                     "WHERE eid=? ";
+        try (
+                Connection conn = DBUtil.getConnection(DBType.MYSQL);
+                PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+             ){
+            stmt.setString(1,bean.getName());
+            stmt.setString(2,bean.getPhone());
+            stmt.setString(3,bean.getAddress());
+            stmt.setString(4,bean.getBirthday());
+            stmt.setString(5,bean.getUsername());
+            stmt.setString(6,bean.getPassword());
+            stmt.setString(7,bean.getRole());
+//            stmt.setString(8,bean.getCurrentStock());
+//            stmt.setString(9,bean.getName());
+            stmt.setInt(8, bean.getId());
+           
+            int affacted = stmt.executeUpdate();
+            
+            if(affacted==1){
+                return true;
+            }else{
+                System.err.println("No rows affacted");
+                return false;
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } finally{
+            
+        }
+        
+    }
+     
     
 }

@@ -8,6 +8,7 @@ package hackerthon.ui.EmpManagement;
 
 import hackerthon.db.bean.EmployeeBean;
 import hackerthon.db.table.EmployeeTable;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,6 +55,9 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
         rePwdTxb = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
         msgLbl = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        eidTxb = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +69,11 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
         });
 
         updateTxb.setText("Update");
+        updateTxb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateTxbActionPerformed(evt);
+            }
+        });
 
         deleteTxb.setText("Delete");
 
@@ -92,6 +101,15 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
 
         msgLbl.setText("msg");
 
+        jButton1.setText("Find");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Employe id");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,11 +121,24 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
                 .addComponent(updateTxb)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deleteTxb)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(msgLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(149, 149, 149)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(eidTxb, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -137,17 +168,19 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
                             .addComponent(pwdTxb)
                             .addComponent(roleCmbx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(130, 130, 130))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(msgLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel9)
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(eidTxb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameTxb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -179,13 +212,14 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(roleCmbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(msgLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addEmpTxb)
                     .addComponent(updateTxb)
-                    .addComponent(deleteTxb))
+                    .addComponent(deleteTxb)
+                    .addComponent(jButton1))
                 .addGap(27, 27, 27))
         );
 
@@ -201,6 +235,10 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
         employee.setBirthday(birthdayTxb.getText());
         employee.setUsername(usernameTxb.getText());
         employee.setPassword(pwdTxb.getText());
+        if(!employee.getPassword().equals(rePwdTxb.getText())){
+            msgLbl.setText("Re-entered password not matched!");
+            return ;
+        }
         employee.setRole(roleCmbx.getSelectedItem().toString());
         try {
             boolean b = EmployeeTable.insert(employee);
@@ -214,6 +252,53 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
             Logger.getLogger(RegisterEmployeeUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addEmpTxbActionPerformed
+
+    private void updateTxbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTxbActionPerformed
+        // TODO add your handling code here:
+        EmployeeBean employee = new EmployeeBean();
+        employee.setId(Integer.parseInt(eidTxb.getText()));
+        employee.setName(enameTxb.getText());
+        employee.setPhone(phoneTxb.getText());
+        employee.setAddress(addressTxb.getText());
+        employee.setBirthday(birthdayTxb.getText());
+        employee.setUsername(usernameTxb.getText());
+        employee.setPassword(pwdTxb.getText());
+        if(!employee.getPassword().equals(rePwdTxb.getText())){
+            msgLbl.setText("Re-entered password not matched!");
+            return ;
+        }
+        employee.setRole(roleCmbx.getSelectedItem().toString());
+        try {
+            boolean b = EmployeeTable.update(employee);
+            if(b){
+                msgLbl.setText("employee inserted successfuly");
+            }else{
+                 msgLbl.setText("Error : something was wrong while inserting employee data");
+            }
+//        System.out.println(employee.getRole());
+        } catch (Exception ex) {
+            Logger.getLogger(RegisterEmployeeUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_updateTxbActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+
+            EmployeeBean bean = EmployeeTable.getRow(Integer.parseInt(eidTxb.getText()));
+            usernameTxb.setText(bean.getUsername());
+            enameTxb.setText(bean.getName());
+            phoneTxb.setText(bean.getPhone());
+            addressTxb.setText(bean.getAddress());
+            birthdayTxb.setText(bean.getBirthday());
+//            roleCmbx.setText(bean.getAddress());
+//            addressTxb.setText(bean.getAddress());
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterEmployeeUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,8 +340,11 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
     private javax.swing.JTextField addressTxb;
     private javax.swing.JTextField birthdayTxb;
     private javax.swing.JButton deleteTxb;
+    private javax.swing.JTextField eidTxb;
     private javax.swing.JTextField enameTxb;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
