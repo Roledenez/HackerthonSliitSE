@@ -6,6 +6,7 @@
 
 package hackerthon.ui;
 
+import hackerthon.core.Login;
 import hackerthon.db.bean.EmployeeBean;
 import hackerthon.db.table.EmployeeTable;
 import java.sql.SQLException;
@@ -97,6 +98,7 @@ public class LoginUI extends javax.swing.JFrame {
             employee =EmployeeTable.getRow(usernameTxb.getText(), passwordTxb.getText());
             if(employee!=null)
             {
+                new Login().setLogin(true);
                 staff=employee;
                 TestUI mw = new TestUI();
                 mw.setVisible(true);
