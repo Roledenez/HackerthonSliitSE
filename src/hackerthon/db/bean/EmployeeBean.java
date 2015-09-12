@@ -19,7 +19,7 @@ public class EmployeeBean {
     private String username;
     private String password;
     private String role;
-    private boolean login;
+    public static boolean login;
 
     /**
      * @return the id
