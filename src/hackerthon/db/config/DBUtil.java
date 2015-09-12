@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class DBUtil {
     private static final String USERNAME ="root";
     private static final String PASSWORD ="";
-    private static final String CONN ="jdbc:mysql://localhost:3306/Meth-Medi";
+    private static final String CONN ="jdbc:mysql://localhost:3306/Zoo";
 
     public static Connection getConnection(DBType dbType) throws SQLException{
         switch(dbType){
