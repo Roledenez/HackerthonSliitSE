@@ -56,7 +56,7 @@
                       <EmptySpace pref="59" max="32767" attributes="0"/>
                       <Component id="addressTxb" min="-2" pref="197" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
@@ -65,7 +65,7 @@
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="bdayTxb" pref="197" max="32767" attributes="0"/>
+                          <Component id="birthdayTxb" pref="197" max="32767" attributes="0"/>
                           <Component id="rePwdTxb" alignment="0" max="32767" attributes="0"/>
                           <Component id="pwdTxb" alignment="0" max="32767" attributes="0"/>
                           <Component id="roleCmbx" max="32767" attributes="0"/>
@@ -73,6 +73,11 @@
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="msgLbl" min="-2" pref="264" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -103,7 +108,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="bdayTxb" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="birthdayTxb" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -121,7 +126,9 @@
                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                   <Component id="roleCmbx" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="47" max="32767" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <Component id="msgLbl" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="addEmpTxb" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="updateTxb" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -179,7 +186,7 @@
         <Property name="text" type="java.lang.String" value="Employe address"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="bdayTxb">
+    <Component class="javax.swing.JTextField" name="birthdayTxb">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -223,6 +230,11 @@
           <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Employee Registration Form"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="msgLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="msg"/>
       </Properties>
     </Component>
   </SubComponents>

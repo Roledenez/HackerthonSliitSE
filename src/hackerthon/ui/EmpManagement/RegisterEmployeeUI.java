@@ -6,6 +6,11 @@
 
 package hackerthon.ui.EmpManagement;
 
+import hackerthon.db.bean.EmployeeBean;
+import hackerthon.db.table.EmployeeTable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author srole_000
@@ -39,7 +44,7 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         addressTxb = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        bdayTxb = new javax.swing.JTextField();
+        birthdayTxb = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -48,6 +53,7 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
         roleCmbx = new javax.swing.JComboBox();
         rePwdTxb = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
+        msgLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +90,8 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Employee Registration Form");
 
+        msgLbl.setText("msg");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,7 +124,7 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                         .addComponent(addressTxb, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
@@ -124,11 +132,15 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(bdayTxb, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                            .addComponent(birthdayTxb, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                             .addComponent(rePwdTxb)
                             .addComponent(pwdTxb)
                             .addComponent(roleCmbx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(130, 130, 130))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(msgLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +165,7 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bdayTxb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(birthdayTxb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -167,7 +179,9 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(roleCmbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(msgLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addEmpTxb)
                     .addComponent(updateTxb)
@@ -180,7 +194,25 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
 
     private void addEmpTxbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmpTxbActionPerformed
         // TODO add your handling code here:
-//        EmplyeeB
+        EmployeeBean employee = new EmployeeBean();
+        employee.setName(enameTxb.getText());
+        employee.setPhone(phoneTxb.getText());
+        employee.setAddress(addressTxb.getText());
+        employee.setBirthday(birthdayTxb.getText());
+        employee.setUsername(usernameTxb.getText());
+        employee.setPassword(pwdTxb.getText());
+        employee.setRole(roleCmbx.getSelectedItem().toString());
+        try {
+            boolean b = EmployeeTable.insert(employee);
+            if(b){
+                msgLbl.setText("employee inserted successfuly");
+            }else{
+                 msgLbl.setText("Error : something was wrong while inserting employee data");
+            }
+//        System.out.println(employee.getRole());
+        } catch (Exception ex) {
+            Logger.getLogger(RegisterEmployeeUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_addEmpTxbActionPerformed
 
     /**
@@ -221,7 +253,7 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addEmpTxb;
     private javax.swing.JTextField addressTxb;
-    private javax.swing.JTextField bdayTxb;
+    private javax.swing.JTextField birthdayTxb;
     private javax.swing.JButton deleteTxb;
     private javax.swing.JTextField enameTxb;
     private javax.swing.JLabel jLabel1;
@@ -233,6 +265,7 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel msgLbl;
     private javax.swing.JTextField phoneTxb;
     private javax.swing.JPasswordField pwdTxb;
     private javax.swing.JPasswordField rePwdTxb;
