@@ -28,17 +28,40 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        addEmpTxb = new javax.swing.JButton();
+        updateTxb = new javax.swing.JButton();
+        deleteTxb = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        addEmpTxb.setText("Add new employee");
+
+        updateTxb.setText("Update");
+
+        deleteTxb.setText("Delete");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(181, 181, 181)
+                .addComponent(addEmpTxb)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(updateTxb)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteTxb)
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(388, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addEmpTxb)
+                    .addComponent(updateTxb)
+                    .addComponent(deleteTxb))
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -80,5 +103,8 @@ public class RegisterEmployeeUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addEmpTxb;
+    private javax.swing.JButton deleteTxb;
+    private javax.swing.JButton updateTxb;
     // End of variables declaration//GEN-END:variables
 }

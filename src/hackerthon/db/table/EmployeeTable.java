@@ -21,7 +21,7 @@ import java.sql.SQLException;
 public class EmployeeTable {
     
      public static EmployeeBean getRow(String name, String username) throws SQLException {
-            String sql = "SELECT * FROM staff WHERE username=? AND password=?";
+            String sql = "SELECT * FROM employee WHERE uname=? AND password=?";
         ResultSet rs = null;
         try(    Connection conn = DBUtil.getConnection(DBType.MYSQL);
                 PreparedStatement stmt = conn.prepareStatement(sql);
